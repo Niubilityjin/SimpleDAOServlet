@@ -33,6 +33,8 @@ public class UserDao {
 			} catch (Exception e) {
 				
 				e.printStackTrace();
+			}finally{
+				DBUtils.closeConnection(conn);
 			}
 			
 			
@@ -69,6 +71,8 @@ public class UserDao {
 			 * 看异常能否恢复, 如果不能恢复(发生了系统异常,比如数据库服务停止了),则提示用户稍后重试.如果能回复,则立即恢复.
 			 */
 			throw new RuntimeException(e);
+		}finally{
+			DBUtils.closeConnection(conn);
 		}
 		return users;
 	}
